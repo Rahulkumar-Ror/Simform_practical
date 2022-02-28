@@ -1,0 +1,32 @@
+
+<%= form_with model: [:business, @customer] do |form| %>
+
+<div>
+  <%= form.label :Fname %><br>
+  <%= form.text_field :fname ,placeholder: "Enter a First Name"%>
+
+</div>
+
+<div>
+  <%= form.label :Lname %><br>
+  <%= form.text_field :lname ,placeholder: "Enter a Last Name"%>
+
+</div>
+
+<div>
+  <%= form.label :Email %><br>
+  <%= form.email_field :email ,placeholder: "Enter a your email"%>
+
+</div>
+
+<div>
+  <%= form.label :Phone_number %><br>
+  <%= form.number_field :phone_number %>
+
+</div>
+
+<div>
+  <%= form.submit  %>
+</div>
+
+<% end %>

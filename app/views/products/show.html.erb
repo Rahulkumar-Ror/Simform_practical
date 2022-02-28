@@ -1,0 +1,37 @@
+<center>
+<table>
+  <% if @product.orders.any? %>
+	<th>Title</th>
+  <th>Description</th>
+  <th>Price</th>
+  <th>Quantity</th>
+  <th>Total_price</th>
+	<th colspan=3>Actions</th>
+	<% @products.orders.each do |order| %>
+	<tr>
+	  <td><%= @product.title %></td>
+		<td><%= @product.description %></td>
+		<td><%= @product.price %></td>
+
+
+		<td><%= button_to "Edit", edit_product_path(@product), method: :get %></td>
+		<td><%= button_to "Show", product_path(@product), method: :get %></td>
+    <td><%= button_to "Destroy", products_path(@product), method: :get %></td>
+	</tr>
+	<% end %>
+	<% else %>
+	  <th>Title</th>
+    <th>Description</th>
+    <th>Price</th>
+		<th colspan=3>Actions</th>
+		<tr>
+		  <td><%= @product.title %></td>
+			<td><%= @product.description %></td>
+			<td><%= @product.price %></td>
+			<td><%= button_to "Edit", products_edit_path(@product), method: :get %></td>
+		  <td><%= button_to "Show", products_show_path(@product), method: :get %></td>
+      <td><%= button_to "Destroy", product_path(@product), method: :get %></td>
+    </tr>
+		<% end %>
+</table>
+<center>
