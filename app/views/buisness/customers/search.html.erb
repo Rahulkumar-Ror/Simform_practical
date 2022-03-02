@@ -1,38 +1,53 @@
-<h2 class="center">Search a customer using name:</h2>
 
-<center>
-
-<table>
-  <th>Search Customer</th>
-  <th>Search</th>
-
-  <%= form_tag search_business_customers_path, method: :get do  %>
-
-  <tr>
-    <td><%= text_field_tag :search, params[:search] %></td>
-    <td><%= submit_tag "search" %></td>
-  </tr>
-  <% end %>
-
-</table>
-</center>
-
-<center>
-
-  <table>
-
-    <th>First_name</th>
-    <th>Last_name</th>
-    <th>Email</th>
-    <th>Phone_number</th>
-
-    <% @customers.each do |customer| %>
+<h2 class="text-center mt-4">Search by Customer Name</h2>
+<div class="container">
+<div class="row justify-content-md-center">
+<div class="col-8 mt-4">
+<div class="card text-center shadow mb-5 bg-white rounded">
+<div class="card-header font-italic">
+<%= form_with url: search_buisness_customers_path, method: :get do |form| %>
+  <div>
+    <div >
+      <th>
+        <%= form.label :query, "Enter Customer Name" %><br/>
+        <%= form.text_field :query,placeholder: "Enter Customer Name" %>
+      </th>
+    </div>
+  </div>
+  <div>
+    <div >
+      <div class="form-group">
+        <%= form.submit "Search Customer", class:"btn btn-success mb-3  mt-3" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if @customer_search.try(:any?) %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= customer.fname %></td>
-        <td><%= customer.lname %></td>
-        <td><%= customer.email %></td>
-        <td><%= customer.phone_number %></td>
+      <th scope="col">Id</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone no</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @customer_search.each do |customer| %>
+      <tr>
+        <th scope="row"> <%= customer.id  %> </th>
+        <td><%= customer.first_name  %></td>
+        <td><%= customer.last_name  %></td>
+        <td><%= customer.email  %></td>
+        <td><%= customer.phone_number  %></td
       </tr>
     <% end %>
+    </tbody>
   </table>
+<% end %>
+<center>
+  <div> 
+    <%= link_to "Home", buisness_customers_path %>
+  </div>
 </center>

@@ -6,13 +6,16 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
   end
 
   def new
+    # binding.pry
     @product = Product.new
   end
 
   def create
+    # binding.pry
     @product = Product.new(create_products)
     if @product.save
       flash[:notice] = "Product has been successfully created......"
@@ -26,6 +29,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    @product = Product.find_by_id(params[:id])
     if @product = Product.update(create_products)
       flash[:notice] = "Product has been successfully edited......."
       redirect_to products_path
@@ -35,6 +39,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    @product = Product.find_by_id(params[:id])
     @product.destroy
     redirect_to products_path
   end
@@ -42,7 +47,7 @@ class ProductsController < ApplicationController
   private
 
   def find_product
-    @product = Product.find(params[:id])
+    @product = Product.find_by_id(params[:id])
   end
 
   def create_products

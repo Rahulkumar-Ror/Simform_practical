@@ -1,0 +1,28 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <p style = "color:red"><%= error %></p>
+  <% end %>
+<% end %>
+
+<h2> Make a order</h2>
+<%= form_with(model: [@product, @order], local: true) do |form| %>
+<div>
+  <%= form.hidden_field :product_id %>
+</div>
+
+<div>
+  <%= form.label :quantity %><br>
+  <%= form.number_field :quantity %>
+</div>
+
+<div>
+  <%= form.label :total_price %><br>
+  <%= form.number_field :total_price, placeholder: "total_price = 'quantity*price'" %>
+</div>
+
+<div>
+  <%= form.submit %>
+</div>
+
+<% end %>
+
