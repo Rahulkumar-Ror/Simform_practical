@@ -1,0 +1,33 @@
+<h2 class="text-center mt-4">Create a product</h2>
+<div class="container">
+<div class="row justify-content-md-center">
+<div class="col-8 mt-4">
+<div class="card text-center shadow mb-5 bg-white rounded">
+<div class="card-header font-italic">
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <p style = "color:red"><%= error %></p>
+  <% end %>
+<% end %>
+<%= form_with model: @product do |form| %>
+
+<div>
+  <%= form.label :title %></br>
+  <%= form.text_field :title, placeholder: "Enter a title" %>
+</div>
+
+<div>
+  <%= form.label :description %></br>
+  <%= form.text_area :description , placeholder: "Enter a product description" %>
+</div>
+
+<div>
+  <%= form.label :price %><br/>
+  <%= form.number_field :price %>
+</div>
+
+<div>
+  <%= form.submit "Create product" %>
+</div>
+
+<% end %>

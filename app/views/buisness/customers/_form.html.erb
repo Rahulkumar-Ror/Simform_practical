@@ -1,0 +1,32 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <p style = "color:red"><%= error %></p>
+  <% end %>
+<% end %>
+<%= form_with model: [:buisness, @customer] do |form| %>
+
+<div>
+  <%= form.label :first_name %><br>
+  <%= form.text_field :first_name ,placeholder: "Enter a First Name"%>
+</div>
+
+<div>
+  <%= form.label :last_name %><br>
+  <%= form.text_field :last_name ,placeholder: "Enter a Last Name"%>
+</div>
+
+<div>
+  <%= form.label :email %><br>
+  <%= form.email_field :email ,placeholder: "Enter a your email"%>
+</div>
+
+<div>
+  <%= form.label :phone_number %><br>
+  <%= form.number_field :phone_number %>
+</div>
+
+<div>
+  <%= form.submit  %>
+</div>
+
+<% end %>

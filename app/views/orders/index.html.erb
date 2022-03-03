@@ -1,0 +1,30 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <p style = "color:red"><%= error %></p>
+  <% end %>
+<% end %>
+<h1>List of Orders</h1>
+<center>
+  <table>
+    <th>Title</th>
+    <th>Quantity</th>
+    <th>Total Price</th>
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.product.title %></td>
+      <td><%= order.quantity %></td>
+      <td><%= order.total_price %></td>
+    </tr>
+    <% end %>
+  </table>
+</center>
+<center>
+  <div> 
+    <%= link_to "Add a new order", new_product_order_path(@product) %>
+  </div>
+</center>
+<center>
+  <div> 
+    <%= link_to "Back", products_path %>
+  </div>
+</center>

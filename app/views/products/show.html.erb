@@ -1,0 +1,45 @@
+<div class="col-lg-14 mx-lg-auto p-5">
+<div class="card shadow">
+<div class="card-body p-5 ">
+<center>
+<table>
+  <th> Product Id </th>
+  <th><%= @product.id %></th>
+</table><br/>
+<table>
+  <th>Product title</th>
+  <th>Product description</th>
+  <th>Product price</th>
+  <tr>
+    <td><%= @product.title %></td>
+    <td><%= @product.description %></td>
+    <td><%= @product.price %></td>
+  <tr>
+</table>
+  <br/><br/>
+  <% if @product.orders.any? %>
+  <th>Below is the list <b><%= @product.title %></b> order </th>
+<table> 
+  <th>Quantity</th>
+    <th>Total_price</th>
+    <th colspan=4>Actions</th>
+      <% @product.orders.each do |order| %>
+      <tr>  
+        <td><%= order.quantity %></td>
+        <td><%= order.total_price %></td>
+        <td><%= button_to "show", order_path(order.id),method: :get %></td>
+        <td><%= button_to "Edit", edit_order_path(order.id),method: :get %></td>
+        <td><%= button_to "Delete", order_path(order.id),method: :delete %></td> 
+        <td><%= button_to "Back", products_path,method: :get %></td>
+      </tr>
+      <% end %>
+    <% else %>
+  <th>Not any order for this product</th>
+  <% end %>
+</table>
+</center>
+<center>
+  <div> 
+  <b> <%= link_to "Make a new order", new_product_order_path(@product,@order) %></b>
+  </div>
+</center> 
